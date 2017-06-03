@@ -162,6 +162,11 @@ def example():
 class Quiz(Exam):
     """Like an exam, but pass/fail instead of percentage score."""
 
+    def __repr__(self):
+        """Quiz name."""
+
+        return '{}'.format(self.name)
+
     def administer(self):
         """Administers all questions and returns pass/fail result."""
 
@@ -171,9 +176,8 @@ class Quiz(Exam):
 class StudentQuiz(StudentExam):
     """Quiz for a student."""
 
-    def __init__(self, student, exam):
-        """Initialize exam for a student."""
+    def __repr__(self):
+      """Student name, quiz name, and score."""
 
-        self.student = student
-        self.exam = exam
-        self.score = None
+      return 'Student: {}, quiz: {}, score: {}'.format(self.student,
+        self.exam, self.score)
