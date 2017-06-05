@@ -57,10 +57,10 @@ class Student(object):
         self.last_name = last_name
         self.address = address
 
-    def __repr__(self):
-        """Student description."""
+    # def __repr__(self):
+    #     """Student description."""
 
-        return '{} {}'.format(self.first_name, self.last_name)
+    #     return '{} {}'.format(self.first_name, self.last_name)
 
 
 class Question(object):
@@ -72,10 +72,10 @@ class Question(object):
         self.question = question
         self.correct_answer = correct_answer
 
-    def __repr__(self):
-        """Question text."""
+    # def __repr__(self):
+    #     """Question text."""
 
-        return '{}'.format(self.question)
+    #     return '{}'.format(self.question)
 
     def ask_and_evaluate(self):
         """Print question, return True or False based on user answer."""
@@ -92,10 +92,10 @@ class Exam(object):
         self.name = name
         self.questions = []
 
-    def __repr__(self):
-        """Exam name."""
+    # def __repr__(self):
+    #     """Exam name."""
 
-        return '{}'.format(self.name)
+    #     return '{}'.format(self.name)
 
     def add_question(self, question):
         """Adds a question to the exam's list of questions."""
@@ -124,18 +124,18 @@ class StudentExam(object):
         self.exam = exam
         self.score = None
 
-    def __repr__(self):
-        """Student name, exam name, and score."""
+    # def __repr__(self):
+    #     """Student name, exam name, and score."""
 
-        return 'Student: {}, exam: {}, score: {}'.format(self.student,
-            self.exam, self.score)
+    #     return 'Student: {}, exam: {}, score: {}'.format(self.student,
+    #         self.exam, self.score)
 
     def take_test(self):
         """Administer exam and update score."""
 
         self.score = self.exam.administer()
 
-        print repr(self)
+        print 'Score: {}'.format(self.score)
 
 
 def example():
@@ -162,10 +162,10 @@ def example():
 class Quiz(Exam):
     """Like an exam, but pass/fail instead of percentage score."""
 
-    def __repr__(self):
-        """Quiz name."""
+    # def __repr__(self):
+    #     """Quiz name."""
 
-        return '{}'.format(self.name)
+    #     return '{}'.format(self.name)
 
     def administer(self):
         """Administers all questions and returns pass/fail result."""
@@ -176,8 +176,19 @@ class Quiz(Exam):
 class StudentQuiz(StudentExam):
     """Quiz for a student."""
 
-    def __repr__(self):
-      """Student name, quiz name, and score."""
+    # def __repr__(self):
+    #   """Student name, quiz name, and score."""
 
-      return 'Student: {}, quiz: {}, score: {}'.format(self.student,
-        self.exam, self.score)
+    #   return 'Student: {}, quiz: {}, score: {}'.format(self.student,
+    #     self.exam, self.score)
+
+    def take_test(self):
+        """Administer quiz and update score."""
+
+        super(StudentQuiz, self).take_test()
+
+        if self.score == 0:
+          print 'Fail'
+
+        elif self.score == 1:
+          print 'Pass'
